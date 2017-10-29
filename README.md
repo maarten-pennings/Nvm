@@ -1,7 +1,7 @@
-#Nvm
+# Nvm
 A library for saving named strings into the EEPROM (non-volatile memory) of the ESP8266.
 
-##Introduction
+## Introduction
 The ESP8266 has an integrated non volatile memory (NVM).
 This library allows one to save and retrieve named strings into the NVM.
 
@@ -20,5 +20,5 @@ Memory footprint is as follows: for each field, the EEPROM stores
 1 byte (for the actual length), len bytes (for data, len as secified in the layout), 1 byte for the termination zero, and 1 byte a checksum.
 
 
-##Details
+## Details
 See [Nvm.h](src/Nvm.h) for details.
