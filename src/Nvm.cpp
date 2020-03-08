@@ -1,6 +1,6 @@
 /*
   Nvm.cpp - Library for saving named strings in EEPROM (non-volatile memory)
-  Created by Maarten Pennings 2017 April 17, Updated comments 2017 Oct 29
+  Created by Maarten Pennings 2017 April 17, Updated comments 2017 Oct 29, Allows len==0 2020 March 07
 */
 
 
@@ -22,7 +22,7 @@ Nvm::Nvm(NvmField*fields) {
   // Count the number of fields and run some checks.
   _fieldcount = 0;
   NvmField * f = fields;
-  while( f->name!=0 && f->dft!=0 && f->len!=0 ) {
+  while( f->name!=0 ) {
     if( strlen(f->name)>NVM_MAX_LENZ-1 ) Serial.printf("ERROR: Nvm field '%s' has a name that exceeds len %d\n", f->name, NVM_MAX_LENZ-1);
     if( f->len         >NVM_MAX_LENZ-1 ) Serial.printf("ERROR: Nvm field '%s' has len %d (but %d is max)\n", f->name, f->len, NVM_MAX_LENZ-1);
     if( strlen(f->dft) >f->len         ) Serial.printf("ERROR: Nvm field '%s' has default '%s' with len %d which exceeds len %d\n", f->name, f->dft, strlen(f->dft), f->len);
@@ -30,9 +30,10 @@ Nvm::Nvm(NvmField*fields) {
     _fieldcount++;
   }
   // Check sentinel for consistency
-  if( f->name!=0 ) Serial.printf("ERROR: Nvm sentinel field has non-zero name '%s'\n", f->name);
-  if( f->dft !=0 ) Serial.printf("ERROR: Nvm sentinel field has non-zero default '%s'\n", f->dft);
-  if( f->len !=0 ) Serial.printf("ERROR: Nvm sentinel field has non-zero length %d\n", f->len);
+  if( f->name  !=0 ) Serial.printf("ERROR: Nvm sentinel field has non-zero name '%s'\n", f->name);
+  if( f->dft   !=0 ) Serial.printf("ERROR: Nvm sentinel field has non-zero default '%s'\n", f->dft);
+  if( f->len   !=0 ) Serial.printf("ERROR: Nvm sentinel field has non-zero length %d\n", f->len);
+  if( f->extra !=0 ) Serial.printf("ERROR: Nvm sentinel field has non-zero extra %s\n", f->extra);
   // Setup the array that records the start positions of the fields
   _fieldstarts = new int[_fieldcount+1]; // Same length as _fields (which has a sentinel)
   _fieldstarts[0] = 0; // Offset of first field.
