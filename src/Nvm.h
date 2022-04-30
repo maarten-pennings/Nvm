@@ -1,9 +1,14 @@
-/*
-  Nvm.h - Library for saving named strings in EEPROM (non-volatile memory)
-  Created by Maarten Pennings 2017 April 17, Updated comments 2017 Oct 29
-*/
+//  Nvm.h - Library for saving named strings in EEPROM (non-volatile memory), created by Maarten Pennings 2017 April 17
 #ifndef __NVM_H_
 #define __NVM_H_
+/*
+REVISION HISTORY
+ v1.3.0  20220430  Added NVM_VERSION
+ v1.2.0  20200308  Allows len==0
+ v1.1.0  20171029  Readme, license
+ v1.0.0  20170417  Initial version
+*/
+#define NVM_VERSION "1.3.0" // also in library.properties
 
 
 /*
