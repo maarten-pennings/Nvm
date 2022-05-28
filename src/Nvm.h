@@ -3,12 +3,13 @@
 #define __NVM_H_
 /*
 REVISION HISTORY
+ v1.4.0  20220528  Extended max len to 128
  v1.3.0  20220430  Added NVM_VERSION
  v1.2.0  20200308  Allows len==0
  v1.1.0  20171029  Readme, license
  v1.0.0  20170417  Initial version
 */
-#define NVM_VERSION "1.3.0" // also in library.properties
+#define NVM_VERSION "1.4.0" // also in library.properties
 
 
 /*
@@ -52,7 +53,7 @@ REVISION HISTORY
 
 
 // Max buffer size (strlen+1) for values
-#define NVM_MAX_LENZ 65 
+#define NVM_MAX_LENZ 129 
 
 
 // An array of NvmField's defines the nvm layout; one NvmField defines a single field; it records:
